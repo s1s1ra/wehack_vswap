@@ -17,7 +17,11 @@ import { useEffect, useState } from 'react';
 const theme = createTheme();
 
 const Login = () => {
-    const [loginState, setLoginState] = useState("login");
+    const [loginState, setLoginState] = useState(true);
+
+    const changeState = () => {
+        setLoginState(!loginState);
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -30,6 +34,7 @@ const Login = () => {
 
     return (
         <div>
+            {loginState === true ? 
             <ThemeProvider theme={theme}>
                 <Grid container component="main" sx={{ height: '100vh' }}>
                     <CssBaseline />
@@ -84,10 +89,6 @@ const Login = () => {
                             id="password"
                             autoComplete="current-password"
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
                         <Button
                             type="submit"
                             fullWidth
@@ -103,7 +104,7 @@ const Login = () => {
                             </Link>
                             </Grid>
                             <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link href="#" variant="body2" onClick={changeState}>
                                 {"Don't have an account? Sign Up"}
                             </Link>
                             </Grid>
@@ -112,7 +113,97 @@ const Login = () => {
                     </Box>
                     </Grid>
                 </Grid>
-            </ThemeProvider>
+            </ThemeProvider> : 
+            <ThemeProvider theme={theme}>
+            <Grid container component="main" sx={{ height: '100vh' }}>
+                <CssBaseline />
+                <Grid
+                item
+                xs={false}
+                sm={4}
+                md={7}
+                sx={{
+                    backgroundImage: 'url(https://trekbaron.com/wp-content/uploads/2021/09/mountain-autumn-path-sep302021.jpg.webp)',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundColor: (t) =>
+                    t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }}
+                />
+                <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+                <Box
+                    sx={{
+                    my: 8,
+                    mx: 4,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    }}
+                >
+                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                    <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                    Sign Up
+                    </Typography>
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="fname"
+                        label="FullName"
+                        name="fname"
+                        autoComplete="fname"
+                        autoFocus
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Email Address"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Password"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                    />
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Sign Up
+                    </Button>
+                    <Grid container>
+                        <Grid item xs>
+                        {/* <Link href="#" variant="body2">
+                            Forgot password?
+                        </Link> */}
+                        </Grid>
+                        <Grid item>
+                        <Link href="#" variant="body2" onClick={changeState}>
+                            {"Have an account? Sign In"}
+                        </Link>
+                        </Grid>
+                    </Grid>
+                    </Box>
+                </Box>
+                </Grid>
+            </Grid>
+        </ThemeProvider>
+        }
         </div>
     )
 }
