@@ -87,9 +87,11 @@ const Profile = () => {
         'age': '20',
         'sexOrientation': 'Bisexual',
         'ethnicity' : 'Asian',
-        'religion' : 'Christian'
+        'religion' : 'Christian',
         }
     ]
+
+    const interests = [{'data':['Smoking', 'Eating', 'Adventure']}]
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
