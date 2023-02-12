@@ -1,3 +1,21 @@
+.profile-bg{
+  color : #FFF3E0;
+
+}
+
+.profile-pic img{
+  border-radius : 50%;
+  
+}
+
+.profile-content {
+  flex: 1;
+}
+
+.profile-info {
+  flex: 1;
+}
+
 .App {
   text-align: center;
 }
