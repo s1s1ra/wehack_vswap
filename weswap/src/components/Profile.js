@@ -33,7 +33,7 @@ const Profile = () => {
         <div className="row">
           {/*{this.dataset.map(dataset => (*/}
           {Array.from({ length: data.length }).map((_, i) => (
-            <div className="col-md-4 animated fadeIn" key={data[i].id}>
+            <div className="col-md-4 animated fadeIn" key={i}>
               <div className="card">
                 <div className="card-body">
                   <div className="avatar">

@@ -4,11 +4,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useState } from 'react';
-import {Profile, Events, User} from './';
-import { Grid } from '@mui/material';
+import {Profile, Events, User, Match} from './';
+import { Button, Grid } from '@mui/material';
 import SwapCallsIcon from '@mui/icons-material/SwapCalls';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Shuffle';
+import { Navigate } from 'react-router-dom';
+
+
 const Home = () =>{
     const [activeNav, setActiveNav] = useState(0);
     return(
@@ -23,22 +26,21 @@ const Home = () =>{
                     <Nav.Link onClick={() =>setActiveNav(1)}>Events</Nav.Link>
                     
                     </Nav>
-                    <Nav><Fab color="primary" aria-label="add">
-                        Shuffle<AddIcon />
-                    </Fab></Nav>
                     <Nav>
                     <NavDropdown title="User" id="basic-nav-dropdown">
                     <NavDropdown.Item onClick={() =>setActiveNav(2)}>User Profile</NavDropdown.Item>
-                    <NavDropdown.Item href="/home">Your events</NavDropdown.Item>
-                    <NavDropdown.Item href="/home">Your groups</NavDropdown.Item>
-                    <NavDropdown.Item href="/home">Setings</NavDropdown.Item>
-                    <NavDropdown.Item href="/home">Help</NavDropdown.Item>
+                    <NavDropdown.Item href="/">Your events</NavDropdown.Item>
+                    <NavDropdown.Item href="/">Your groups</NavDropdown.Item>
+                    <NavDropdown.Item href="/">Setings</NavDropdown.Item>
+                    <NavDropdown.Item href="/">Help</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
                     </NavDropdown>
+                    <Nav.Link onClick={()=>{setActiveNav(3)}}>Shuffle</Nav.Link>
                 </Nav>
                 </Container>
-            </Navbar> 
+                </Navbar>
+            
             <Grid container spacing={2}>            
                 <Grid item xs={0}>
 
@@ -47,6 +49,7 @@ const Home = () =>{
                 {activeNav === 0 && <Profile />}
                 {activeNav === 1 && <Events />}
                 {activeNav === 2 && <User />}
+                {activeNav === 3 && <Match />}
                 </Grid>
                 
             </Grid>

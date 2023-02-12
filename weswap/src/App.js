@@ -5,7 +5,7 @@ import {
   Routes,
   Route
  } from "react-router-dom"; 
-import {Home,Profile,User,Events} from './components';
+import {Home,Profile,User,Events,Match} from './components';
 
 
 function App() {
@@ -18,6 +18,7 @@ function App() {
             <Route path="/profiles" element={<Profile />} />
             <Route path="/events" element={<Events />} />
             <Route path="/user" element={<User />} />
+            <Route path="/match" element={<Match />} />
           </Routes>
         </Router>
       </div>
