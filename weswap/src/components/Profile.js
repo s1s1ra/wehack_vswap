@@ -1,8 +1,11 @@
 import React from 'react'
 import "../styles.css";
+import {useState, useEffect } from 'react';
+import axios from "axios";
+import {Button} from '@mui/material';
 
 
-const data = [{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'asian','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
+const data2 = [{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'asian','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
 {'name':'Akshata','gender':'female','age':'22','pronouns':'she/her','ehtnicity':'american','religion':'christian','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27sFJreSiqEOAMqqHo3lkHyi1SE4MzAKUKg&usqp=CAU'},
 {'name':'Sisira','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'latino','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU'},
 {'name':'Vishal','gender':'male','age':'21','pronouns':'he/him','ehtnicity':'asian','religion':'jain','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU'},
@@ -12,7 +15,29 @@ const data = [{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her'
 {'name':'Vishal','gender':'male','age':'21','pronouns':'he/him','ehtnicity':'asian','religion':'jain','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU'},
 ];
 
+
 const Profile = () => {
+  const [data, setData] =  useState([]);
+
+  useEffect(() => {
+    const getUserData = async() => {
+      const response = await axios.get('http://localhost:8080/users');
+      const data = response.data;
+      console.log(data);
+      setData(data);
+    }
+    getUserData().catch(console.error);
+  },[])
+
+  const handleRequest = async(r_id) => {
+    console.log(r_id);
+    const data = {'senderId': 4, 'receiverId': r_id}
+    const sendRequest = async() => {
+      const response = await axios.post('http://localhost:8080/requests/', data);
+      console.log(response);
+    }
+    sendRequest().catch(console.error);
+  }
   return (
     <>
     <div className="App">
@@ -20,32 +45,39 @@ const Profile = () => {
       <div className="clearfix">
         <div className="row">
           {/*{this.dataset.map(dataset => (*/}
-          {Array.from({ length: data.length }).map((_, i) => (
-            <div className="col-md-4 animated fadeIn" key={data[i].name}>
+          {Array.from({ length: data.length }).map((_, i) => {
+            const key = i;
+          return(
+            <div className="col-md-4 animated fadeIn" key={data[i].id}>
               <div className="card">
                 <div className="card-body">
                   <div className="avatar">
                     <img
-                      src={data[i].image}
+                      src={data2[i].image}
                       className="card-img-top"
                       alt=""
-                    />
+          />
                   </div>
                   <h5 className="card-title">
-                    {data[i].name +
+                    {data[i].firstName +
                       " " +
-                      data[i].name}
+                      data[i].lastName}
                     </h5>
                   <p className="card-text">
-                    {data[i].age +
+                    {data[i].pronouns 
+                    +
                       ", " +
-                      data[i].gender}
+                      data[i].profession
+                      }
                     <br />
-                    <span className="phone">{data[i].religion}</span>
+                    <button onClick={() => {handleRequest(key)}}>
+                        Send Request
+                    </button>
+                    {/* <span className="phone">{data[i].religion}</span> */}
                   </p>
                 </div>
               </div>
-            </div>))}
+            </div>)})}
             {/*))}*/}
         </div>
         <button
