@@ -1,5 +1,7 @@
 import React from 'react'
 import "../styles.css";
+import { Button } from '@mui/material';
+import axios from "axios";
 
 
 const data = [{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','profession':'student','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
@@ -22,6 +24,16 @@ const state = {
 
 
 const Profile = () => {
+  const handleRequest = async(r_id) => {
+    const data = {'sender_id' : 1, 'receiver_id': r_id}
+    const sendRequest = async()=> {
+      const response = await axios.post('http://localhost:8080/', data);
+      console.log(response);
+    }
+
+    sendRequest().catch(console.error);
+  }
+
   const uppercase = (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
@@ -33,7 +45,7 @@ const Profile = () => {
         <div className="row">
           {/*{this.dataset.map(dataset => (*/}
           {Array.from({ length: data.length }).map((_, i) => (
-            <div className="col-md-4 animated fadeIn" key={i}>
+            <div className="col-md-4 animated fadeIn" key={data[i].id}>
               <div className="card">
                 <div className="card-body">
                   <div className="avatar">
@@ -54,6 +66,11 @@ const Profile = () => {
                       data[i].pronouns}
                     <br />
                     <span className="phone">{uppercase(data[i].profession)}</span>
+                    <span>
+                    <Button id={data[i].id}  onClick={handleRequest(this.id)}>
+                      Send Request
+                    </Button>
+                    </span>
                   </p>
                 </div>
               </div>

@@ -75,9 +75,11 @@ const Profile = () => {
         'age': '20',
         'sexOrientation': 'Bisexual',
         'ethnicity' : 'Asian',
-        'religion' : 'Christian'
+        'religion' : 'Christian',
         }
     ]
+
+    const interests = [{'data':['Smoking', 'Eating', 'Adventure']}]
     const Item = styled(Paper)(({ theme }) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
         ...theme.typography.body2,
@@ -247,9 +249,23 @@ const Profile = () => {
                     </Grid>
                 </Box>
             </Paper>
-            {/* <Paper>
-
-            </Paper> */}
+            <Paper sx ={{elevation: 2, marginInline:20, borderRadius: 10, marginBlock:5}}>
+                <div style={{fontSize: 30}}>
+                    Interests
+                </div>
+                <Box sx={{padding: 4}} style={{fontSize: 50}}>
+                    <Grid container spacing = {4}>
+                        {Array.from({length: interests[0].data.length}).map((_,i) => (
+                            <Grid item xs={3}>
+                                <Item onClick={() => setFlip(!flip)} style={{justifyContent:'center', alignItems:'center'}}>
+                                    {interests[0].data[i]}            
+                                </Item>
+                            </Grid>
+                        ))}
+                        
+                    </Grid>
+                </Box>
+            </Paper>
         </div> 
     </div>
   )
