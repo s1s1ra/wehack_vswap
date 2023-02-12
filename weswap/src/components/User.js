@@ -17,14 +17,20 @@ import MenuItem from '@mui/material/MenuItem';
 import Slider from '@mui/material/Slider';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import axios from 'axios';
 
 
 const Profile = () => {
+    const [requestData, setRequestData] = useState([]);
+
     useEffect(() => {
         const getRequests = async() => {
-            const data = {};
+            const response = await axios.get('http://localhost:8080/requests/2');
+            console.log(response);
+            setRequestData(response.data);
         }
-    })
+        getRequests().catch(console.error);
+    },[])
 
     const [flip, setFlip] = useState(false);
     const [flip2, setFlip2] = useState(false);
@@ -95,7 +101,7 @@ const Profile = () => {
   return (
     <div className = 'App'>
         <div className = 'card_profile'>
-            <Paper sx ={{elevation: 2, margin:10, marginBottom: 5, borderRadius: 10}}>
+            <Paper sx ={{elevation: 2, marginInline:20, borderRadius: 10}}>
                 <Box style ={{background: 'linear-gradient(90deg, rgba(30,36,0,1) 0%, rgba(77,9,121,1) 35%, rgba(255,0,33,1) 100%)', height: 130, padding: 20}}>
                     <div className = 'profile-pic'>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFEdOGWCl2XyCAxD_pzARX98Swdft2_XB2zT-dCU4V8ovseWC5d5EVEi1bW4LHonanbIU&usqp=CAU" alt=""/>
@@ -198,7 +204,7 @@ const Profile = () => {
                         <Grid item xs={3}>
                             <div style={{fontSize:15}}>Pronouns</div>
                             <ReactCardFlip isFlipped={flip2} flipDirection="vertical">
-                                <Item onClick={() => setFlip2(!flip2)} style={{ justifyContent:'center', alignItems:'center'}}>
+                                <Item onClick={() => setFlip2(!flip2)} style={{justifyContent:'center', alignItems:'center'}}>
                                     <ThreePIcon sx={{fontSize: 50}}/>
                                 </Item>
                                 <Item onClick={() => setFlip2(!flip2)} style={{fontSize: 30, textAlign:'center'}}>
@@ -223,7 +229,7 @@ const Profile = () => {
                                 <Item onClick={() => setFlip4(!flip4)} style={{justifyContent:'center', alignItems:'center'}}>
                                     <Diversity1Icon sx={{fontSize: 50}}/>
                                 </Item>
-                                <Item onClick={() => setFlip4(!flip4)} style={{ fontSize: 30, textAlign:'center'}}>
+                                <Item onClick={() => setFlip4(!flip4)} style={{fontSize: 30, textAlign:'center'}}>
                                     {data[0].sexOrientation}
                                 </Item>
                             </ReactCardFlip>
@@ -245,7 +251,7 @@ const Profile = () => {
                                 <Item onClick={() => setFlip6(!flip6)} style={{justifyContent:'center', alignItems:'center'}}>
                                     <AccountBalanceIcon sx={{fontSize: 50}}/>
                                 </Item>
-                                <Item onClick={() => setFlip6(!flip6)} style={{ fontSize: 30, textAlign:'center'}}>
+                                <Item onClick={() => setFlip6(!flip6)} style={{fontSize: 30, textAlign:'center'}}>
                                     {data[0].religion}
                                 </Item>
                             </ReactCardFlip>
@@ -255,6 +261,20 @@ const Profile = () => {
             </Paper>
             <Paper>
                 
+                    <Box sx={{padding: 4}} style={{fontSize: 50}}>
+                    <Grid container spacing = {4}>
+                        <div style={{fontSize: 10}}>Requests Recieved</div>
+                        {Array.from({length: requestData.length}).map((_,i) => (
+                            <Grid item xs={3}>
+                            <div style={{fontSize:15}}></div>
+                                <Item >
+                                    {requestData[i].senderId}
+                                </Item>
+                            </Grid>
+                        ))}
+                        
+                    </Grid>
+                    </Box>
             </Paper>
         </div> 
     </div>

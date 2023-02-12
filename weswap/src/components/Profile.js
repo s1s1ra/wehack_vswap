@@ -5,20 +5,30 @@ import axios from "axios";
 import {Button} from '@mui/material';
 
 
-const data2 = [{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'asian','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
-{'name':'Akshata','gender':'female','age':'22','pronouns':'she/her','ehtnicity':'american','religion':'christian','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27sFJreSiqEOAMqqHo3lkHyi1SE4MzAKUKg&usqp=CAU'},
-{'name':'Sisira','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'latino','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU'},
-{'name':'Vishal','gender':'male','age':'21','pronouns':'he/him','ehtnicity':'asian','religion':'jain','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU'},
-{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'asian','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
-{'name':'Akshata','gender':'female','age':'22','pronouns':'she/her','ehtnicity':'american','religion':'christian','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27sFJreSiqEOAMqqHo3lkHyi1SE4MzAKUKg&usqp=CAU'},
-{'name':'Sisira','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'latino','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU'},
-{'name':'Vishal','gender':'male','age':'21','pronouns':'he/him','ehtnicity':'asian','religion':'jain','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU'},
+const data2 = [{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','profession':'student','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
+{'name':'Akshata','gender':'female','age':'22','pronouns':'she/her','profession':'Dr','religion':'christian','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27sFJreSiqEOAMqqHo3lkHyi1SE4MzAKUKg&usqp=CAU'},
+{'name':'Sisira','gender':'female','age':'23','pronouns':'she/her','profession':'farmer','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU'},
+{'name':'Vishal','gender':'male','age':'21','pronouns':'he/him','profession':'lawyer','religion':'jain','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU'},
+{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','profession':'It professional','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
+{'name':'Akshata','gender':'female','age':'22','pronouns':'she/her','profession':'Professor','religion':'christian','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27sFJreSiqEOAMqqHo3lkHyi1SE4MzAKUKg&usqp=CAU'},
+{'name':'Sisira','gender':'female','age':'23','pronouns':'she/her','profession':'Student','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU'},
+{'name':'Vishal','gender':'male','age':'21','pronouns':'he/him','profession':'Unemployed','religion':'jain','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU'},
 ];
+
+const state = {
+  data : [],
+  per: 9,
+  page: 1,
+  total_pages: null
+};
+
 
 
 const Profile = () => {
   const [data, setData] =  useState([]);
-
+  const uppercase = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
   useEffect(() => {
     const getUserData = async() => {
       const response = await axios.get('http://localhost:8080/users');
@@ -28,7 +38,6 @@ const Profile = () => {
     }
     getUserData().catch(console.error);
   },[])
-
   const handleRequest = async(r_id) => {
     console.log(r_id);
     const data = {'senderId': 4, 'receiverId': r_id}
@@ -48,7 +57,7 @@ const Profile = () => {
           {Array.from({ length: data.length }).map((_, i) => {
             const key = i;
           return(
-            <div className="col-md-4 animated fadeIn" key={data[i].id}>
+            <div className="col-md-4 animated fadeIn" key={i}>
               <div className="card">
                 <div className="card-body">
                   <div className="avatar">
@@ -59,7 +68,7 @@ const Profile = () => {
           />
                   </div>
                   <h5 className="card-title">
-                    {data[i].firstName +
+                  {data[i].firstName +
                       " " +
                       data[i].lastName}
                     </h5>
@@ -73,7 +82,6 @@ const Profile = () => {
                     <button onClick={() => {handleRequest(key)}}>
                         Send Request
                     </button>
-                    {/* <span className="phone">{data[i].religion}</span> */}
                   </p>
                 </div>
               </div>
@@ -88,6 +96,7 @@ const Profile = () => {
         >
           Load More Users
         </button>
+        
       </div>
       </div>
     </div>

@@ -30,6 +30,19 @@ const Login = () => {
           email: data.get('email'),
           password: data.get('password'),
         });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: data.get('email'), password: data.get('password') })
+        };
+
+        const sendPost = async() => {
+            const response = await fetch('http://localhost:8080/users/', requestOptions);
+            console.log(response);
+        }
+
+        sendPost().catch(console.error);
       };
 
     return (
