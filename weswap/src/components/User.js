@@ -89,7 +89,7 @@ const Profile = () => {
   return (
     <div className = 'App'>
         <div className = 'card_profile'>
-            <Paper sx ={{elevation: 2, margin:10, marginBottom: 5, borderRadius: 10}}>
+            <Paper sx ={{elevation: 2, marginInline:20, borderRadius: 10}}>
                 <Box style ={{background: 'linear-gradient(90deg, rgba(30,36,0,1) 0%, rgba(77,9,121,1) 35%, rgba(255,0,33,1) 100%)', height: 130, padding: 20}}>
                     <div className = 'profile-pic'>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFEdOGWCl2XyCAxD_pzARX98Swdft2_XB2zT-dCU4V8ovseWC5d5EVEi1bW4LHonanbIU&usqp=CAU" alt=""/>
@@ -181,10 +181,10 @@ const Profile = () => {
                         <Grid item xs={3}>
                             <div style={{fontSize:15}}>Gender</div>
                             <ReactCardFlip isFlipped={flip} flipDirection="vertical">
-                                <Item onClick={() => setFlip(!flip)} style={{height: 45, justifyContent:'center', alignItems:'center'}}>
+                                <Item onClick={() => setFlip(!flip)} style={{justifyContent:'center', alignItems:'center'}}>
                                     <Groups3Icon sx={{fontSize: 50}}/>
                                 </Item>
-                                <Item onClick={() => setFlip(!flip)} style={{height: 45, fontSize: 30, textAlign:'center'}}>
+                                <Item onClick={() => setFlip(!flip)} style={{fontSize: 30, textAlign:'center'}}>
                                     {data[0].gender}
                                 </Item>
                             </ReactCardFlip>
@@ -192,10 +192,10 @@ const Profile = () => {
                         <Grid item xs={3}>
                             <div style={{fontSize:15}}>Pronouns</div>
                             <ReactCardFlip isFlipped={flip2} flipDirection="vertical">
-                                <Item onClick={() => setFlip2(!flip2)} style={{height: 45, justifyContent:'center', alignItems:'center'}}>
+                                <Item onClick={() => setFlip2(!flip2)} style={{justifyContent:'center', alignItems:'center'}}>
                                     <ThreePIcon sx={{fontSize: 50}}/>
                                 </Item>
-                                <Item onClick={() => setFlip2(!flip2)} style={{height: 45, fontSize: 30, textAlign:'center'}}>
+                                <Item onClick={() => setFlip2(!flip2)} style={{fontSize: 30, textAlign:'center'}}>
                                     {data[0].pronouns}
                                 </Item>
                             </ReactCardFlip>
@@ -203,10 +203,10 @@ const Profile = () => {
                         <Grid item xs={3}>
                             <div style={{fontSize:15}}>Age</div>
                             <ReactCardFlip isFlipped={flip3} flipDirection="vertical">
-                                <Item onClick={() => setFlip3(!flip3)} style={{height: 45, justifyContent:'center', alignItems:'center'}}>
+                                <Item onClick={() => setFlip3(!flip3)} style={{justifyContent:'center', alignItems:'center'}}>
                                     <ChildCareIcon sx={{fontSize: 50}}/>
                                 </Item>
-                                <Item onClick={() => setFlip3(!flip3)} style={{height: 45, fontSize: 30, textAlign:'center'}}>
+                                <Item onClick={() => setFlip3(!flip3)} style={{fontSize: 30, textAlign:'center'}}>
                                     {data[0].age} years
                                 </Item>
                             </ReactCardFlip>
@@ -214,10 +214,10 @@ const Profile = () => {
                         <Grid item xs={3}>
                             <div style={{fontSize:15}}>Sexuality</div>
                             <ReactCardFlip isFlipped={flip4} flipDirection="vertical">
-                                <Item onClick={() => setFlip4(!flip4)} style={{height: 45, justifyContent:'center', alignItems:'center'}}>
+                                <Item onClick={() => setFlip4(!flip4)} style={{justifyContent:'center', alignItems:'center'}}>
                                     <Diversity1Icon sx={{fontSize: 50}}/>
                                 </Item>
-                                <Item onClick={() => setFlip4(!flip4)} style={{height: 45, fontSize: 30, textAlign:'center'}}>
+                                <Item onClick={() => setFlip4(!flip4)} style={{fontSize: 30, textAlign:'center'}}>
                                     {data[0].sexOrientation}
                                 </Item>
                             </ReactCardFlip>
@@ -225,10 +225,10 @@ const Profile = () => {
                         <Grid item xs={6}>
                             <div style={{fontSize:15}}>Ethnicity</div>
                             <ReactCardFlip isFlipped={flip5} flipDirection="vertical">
-                                <Item onClick={() => setFlip5(!flip5)} style={{height: 45, justifyContent:'center', alignItems:'center'}}>
+                                <Item onClick={() => setFlip5(!flip5)} style={{justifyContent:'center', alignItems:'center'}}>
                                     <Diversity3Icon sx={{fontSize: 50}}/>
                                 </Item>
-                                <Item onClick={() => setFlip5(!flip5)} style={{height: 45, fontSize: 30, textAlign:'center'}}>
+                                <Item onClick={() => setFlip5(!flip5)} style={{fontSize: 30, textAlign:'center'}}>
                                     {data[0].ethnicity}
                                 </Item>
                             </ReactCardFlip>
@@ -236,10 +236,10 @@ const Profile = () => {
                         <Grid item xs={6}>
                             <div style={{fontSize:15}}>Religion</div>
                             <ReactCardFlip isFlipped={flip6} flipDirection="vertical">
-                                <Item onClick={() => setFlip6(!flip6)} style={{height: 45, justifyContent:'center', alignItems:'center'}}>
+                                <Item onClick={() => setFlip6(!flip6)} style={{justifyContent:'center', alignItems:'center'}}>
                                     <AccountBalanceIcon sx={{fontSize: 50}}/>
                                 </Item>
-                                <Item onClick={() => setFlip6(!flip6)} style={{height: 45, fontSize: 30, textAlign:'center'}}>
+                                <Item onClick={() => setFlip6(!flip6)} style={{fontSize: 30, textAlign:'center'}}>
                                     {data[0].religion}
                                 </Item>
                             </ReactCardFlip>
