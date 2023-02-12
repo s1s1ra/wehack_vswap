@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import './index.css';
 import {
@@ -6,7 +5,8 @@ import {
   Routes,
   Route
  } from "react-router-dom"; 
-import {Login} from './components';
+import {Home,Profile,User,Events} from './components';
+
 
 function App() {
   return (
@@ -14,11 +14,10 @@ function App() {
       <div className = "gradient-bg">
         <Router>
           <Routes>
-            <Route path ='/' element = {
-              <div>
-                <Login/>
-              </div>
-            } />
+            <Route path ='/' element = {<Home/>} />
+            <Route path="/profiles" element={<Profile />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/user" element={<User />} />
           </Routes>
         </Router>
       </div>
