@@ -17,11 +17,11 @@ class UserCards extends Component {
     page: 1,
     total_pages: null
   };
-/*
+
   uppercase = word => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
-
+/*
   loadData = () => {
     const { per, page, data } = this.state;
     const endpoint = `https://randomuser.me/api/?nat=us&results=${per}&page=${page}`;
@@ -67,7 +67,7 @@ class UserCards extends Component {
                     />
                   </div>
                   <h5 className="card-title">
-                    {data[i].name +
+                    {this.uppercase(data[i].name) +
                       " " +
                       data[i].name}
                     </h5>

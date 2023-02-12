@@ -7,6 +7,8 @@ import { useState } from 'react';
 import {Profile, Events, User} from './';
 import { Grid } from '@mui/material';
 import SwapCallsIcon from '@mui/icons-material/SwapCalls';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Shuffle';
 const Home = () =>{
     const [activeNav, setActiveNav] = useState(0);
     return(
@@ -19,7 +21,11 @@ const Home = () =>{
                     <Nav.Link active_nav onClick={() =>setActiveNav(0)}>Profiles</Nav.Link>
                     
                     <Nav.Link onClick={() =>setActiveNav(1)}>Events</Nav.Link>
+                    
                     </Nav>
+                    <Nav><Fab color="primary" aria-label="add">
+                        Shuffle<AddIcon />
+                    </Fab></Nav>
                     <Nav>
                     <NavDropdown title="User" id="basic-nav-dropdown">
                     <NavDropdown.Item onClick={() =>setActiveNav(2)}>User Profile</NavDropdown.Item>
@@ -33,7 +39,7 @@ const Home = () =>{
                 </Nav>
                 </Container>
             </Navbar> 
-            <Grid container spacing={2}>
+            <Grid container spacing={2}>            
                 <Grid item xs={0}>
 
                 </Grid>

@@ -89,7 +89,7 @@ const Profile = () => {
   return (
     <div className = 'App'>
         <div className = 'card_profile'>
-            <Paper sx ={{elevation: 2, margin:10, marginBottom: 5, borderRadius: 10}}>
+            <Paper sx ={{elevation: 2, marginInline:20, borderRadius: 10}}>
                 <Box style ={{background: 'linear-gradient(90deg, rgba(30,36,0,1) 0%, rgba(77,9,121,1) 35%, rgba(255,0,33,1) 100%)', height: 130, padding: 20}}>
                     <div className = 'profile-pic'>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFEdOGWCl2XyCAxD_pzARX98Swdft2_XB2zT-dCU4V8ovseWC5d5EVEi1bW4LHonanbIU&usqp=CAU" alt=""/>

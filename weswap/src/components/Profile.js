@@ -2,17 +2,29 @@ import React from 'react'
 import "../styles.css";
 
 
-const data = [{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'asian','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
-{'name':'Akshata','gender':'female','age':'22','pronouns':'she/her','ehtnicity':'american','religion':'christian','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27sFJreSiqEOAMqqHo3lkHyi1SE4MzAKUKg&usqp=CAU'},
-{'name':'Sisira','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'latino','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU'},
-{'name':'Vishal','gender':'male','age':'21','pronouns':'he/him','ehtnicity':'asian','religion':'jain','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU'},
-{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'asian','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
-{'name':'Akshata','gender':'female','age':'22','pronouns':'she/her','ehtnicity':'american','religion':'christian','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27sFJreSiqEOAMqqHo3lkHyi1SE4MzAKUKg&usqp=CAU'},
-{'name':'Sisira','gender':'female','age':'23','pronouns':'she/her','ehtnicity':'latino','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU'},
-{'name':'Vishal','gender':'male','age':'21','pronouns':'he/him','ehtnicity':'asian','religion':'jain','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU'},
+const data = [{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','profession':'student','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
+{'name':'Akshata','gender':'female','age':'22','pronouns':'she/her','profession':'Dr','religion':'christian','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27sFJreSiqEOAMqqHo3lkHyi1SE4MzAKUKg&usqp=CAU'},
+{'name':'Sisira','gender':'female','age':'23','pronouns':'she/her','profession':'farmer','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU'},
+{'name':'Vishal','gender':'male','age':'21','pronouns':'he/him','profession':'lawyer','religion':'jain','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU'},
+{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','profession':'It professional','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
+{'name':'Akshata','gender':'female','age':'22','pronouns':'she/her','profession':'Professor','religion':'christian','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR27sFJreSiqEOAMqqHo3lkHyi1SE4MzAKUKg&usqp=CAU'},
+{'name':'Sisira','gender':'female','age':'23','pronouns':'she/her','profession':'Student','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU'},
+{'name':'Vishal','gender':'male','age':'21','pronouns':'he/him','profession':'Unemployed','religion':'jain','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzHQv_th9wq3ivQ1CVk7UZRxhbPq64oQrg5Q&usqp=CAU'},
 ];
 
+const state = {
+  data : [],
+  per: 9,
+  page: 1,
+  total_pages: null
+};
+
+
+
 const Profile = () => {
+  const uppercase = (word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
   return (
     <>
     <div className="App">
@@ -21,7 +33,7 @@ const Profile = () => {
         <div className="row">
           {/*{this.dataset.map(dataset => (*/}
           {Array.from({ length: data.length }).map((_, i) => (
-            <div className="col-md-4 animated fadeIn" key={data[i].name}>
+            <div className="col-md-4 animated fadeIn" key={data[i].id}>
               <div className="card">
                 <div className="card-body">
                   <div className="avatar">
@@ -32,16 +44,16 @@ const Profile = () => {
                     />
                   </div>
                   <h5 className="card-title">
-                    {data[i].name +
+                    {uppercase(data[i].name) +
                       " " +
                       data[i].name}
                     </h5>
                   <p className="card-text">
                     {data[i].age +
                       ", " +
-                      data[i].gender}
+                      data[i].pronouns}
                     <br />
-                    <span className="phone">{data[i].religion}</span>
+                    <span className="phone">{uppercase(data[i].profession)}</span>
                   </p>
                 </div>
               </div>
@@ -56,6 +68,7 @@ const Profile = () => {
         >
           Load More Users
         </button>
+        
       </div>
       </div>
     </div>
