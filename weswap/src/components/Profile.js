@@ -1,13 +1,8 @@
 import React from 'react'
 import "../styles.css";
-<<<<<<< HEAD
 import {useState, useEffect } from 'react';
 import axios from "axios";
 import {Button} from '@mui/material';
-=======
-import { Button } from '@mui/material';
-import axios from "axios";
->>>>>>> 232bc542134842e2f8dcfd54440eb63a82de9966
 
 
 const data2 = [{'name':'Prachi','gender':'female','age':'23','pronouns':'she/her','profession':'student','religion':'hindu','image':'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsb_V_Ha4XAl47doWf_2lF-actuld60ssYew&usqp=CAU'},
@@ -30,20 +25,7 @@ const state = {
 
 
 const Profile = () => {
-<<<<<<< HEAD
   const [data, setData] =  useState([]);
-=======
-  const handleRequest = async(r_id) => {
-    const data = {'sender_id' : 1, 'receiver_id': r_id}
-    const sendRequest = async()=> {
-      const response = await axios.post('http://localhost:8080/', data);
-      console.log(response);
-    }
-
-    sendRequest().catch(console.error);
-  }
-
->>>>>>> 232bc542134842e2f8dcfd54440eb63a82de9966
   const uppercase = (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
@@ -72,15 +54,10 @@ const Profile = () => {
       <div className="clearfix">
         <div className="row">
           {/*{this.dataset.map(dataset => (*/}
-<<<<<<< HEAD
           {Array.from({ length: data.length }).map((_, i) => {
             const key = i;
           return(
             <div className="col-md-4 animated fadeIn" key={i}>
-=======
-          {Array.from({ length: data.length }).map((_, i) => (
-            <div className="col-md-4 animated fadeIn" key={data[i].id}>
->>>>>>> 232bc542134842e2f8dcfd54440eb63a82de9966
               <div className="card">
                 <div className="card-body">
                   <div className="avatar">
@@ -102,18 +79,9 @@ const Profile = () => {
                       data[i].profession
                       }
                     <br />
-<<<<<<< HEAD
                     <button onClick={() => {handleRequest(key)}}>
                         Send Request
                     </button>
-=======
-                    <span className="phone">{uppercase(data[i].profession)}</span>
-                    <span>
-                    <Button id={data[i].id}  onClick={handleRequest(this.id)}>
-                      Send Request
-                    </Button>
-                    </span>
->>>>>>> 232bc542134842e2f8dcfd54440eb63a82de9966
                   </p>
                 </div>
               </div>
