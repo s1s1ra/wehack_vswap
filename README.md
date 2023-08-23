@@ -10,7 +10,7 @@ What other better way to know and understand about cultural diversity than livin
  
 ## How we built it
 
-We started with building up the Domain model followed by the E-R diagram for our database. Then we started setting up the database using MySQL and implemented REST APIs in the backend to connect the database to the frontend which was implemented using React js. This was done for each feature of application. We went over several iterations of this process to include everything and made sure to link everything properly. 
+We started with building up the Domain model followed by the E-R diagram for our database. Then we started setting up the database using MySQL and implemented Spring Boot REST APIs in the backend to connect the database to the frontend which was implemented using React js. This was done for each feature of application. We went over several iterations of this process to include everything and made sure to link everything properly. 
 
 ## Challenges we ran into
 
